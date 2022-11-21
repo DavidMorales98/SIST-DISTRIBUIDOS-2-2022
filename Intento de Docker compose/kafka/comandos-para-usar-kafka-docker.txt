@@ -1,0 +1,19 @@
+Entrar a la shell de kafka:
+
+	sudo docker exec -i -t -u root $(sudo docker ps | grep docker_kafka | cut -d' ' -f1) /bin/bash
+
+Crear un tópico: (en este caso se le coloca test al topico)
+
+	$KAFKA_HOME/bin/kafka-topics.sh --create --partitions 4 --bootstrap-server kafka:9092 --topic test
+
+Listar todos los posibles topicos:
+
+	$KAFKA_HOME/bin/kafka-topics.sh --bootstrap-server kafka:9092 --list
+
+Iniciar un productor en un topico (en este caso se usa el topico test)
+
+	$KAFKA_HOME/bin/kafka-console-producer.sh --broker-list kafka:9092 --topic=test
+	
+Iniciar un consumidor en un topico: (en este caso se usa el topico test)
+
+	$KAFKA_HOME/bin/kafka-console-consumer.sh --from-beginning --bootstrap-server kafka:9092 --topic=test
